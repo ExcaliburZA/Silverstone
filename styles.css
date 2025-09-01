@@ -1,0 +1,100 @@
+/* Dark mode background and text */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://wallpapercave.com/wp/wp7326071.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* overlay for semi-transparent effect */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* black overlay at 50% opacity */
+  z-index: -1; /* keep it behind content */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Image styling */
+.image {
+  display: block;
+  margin: 0 auto;
+  border: 5px solid black;
+  border-radius: 1rem;
+  background-color: black;
+  width: 25rem;    
+  height: 25rem;
+  object-fit: contain; /* stretch/crop image to fill box */
+}
+
+/* Button styling */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover light effect */
+button:hover {
+  box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+  transform: scale(1.05);
+}
+
+/* Banner styles */
+.banner {
+  width: 85%;
+  padding: 3.5rem 0;
+  text-align: center;
+  background: url('https://i.redd.it/ku8k4yqg3ps91.png') no-repeat center center;
+  background-size: cover;
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 1rem; 
+  margin-top: 2rem; 
+}
+
+.banner h1 {
+  position: relative;
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  z-index: 1;
+}
+
+#txtOreDisplay {
+  color: white;
+  font-weight: bold;
+  background: rgba(30, 30, 30, 0.85); /* semi-transparent dark background */
+  border: 2px solid #00ffcc;          /* accent border color similar to button hover */
+  border-radius: 10px;                /* rounded corners */
+  padding: 16px 24px;                 /* space between text and border */
+  display: inline-block;              /* shrink to fit content */
+  margin-top: 18px;                   /* space above */
+  box-shadow: 0 2px 12px rgba(0,255,204,0.15); /* subtle glow */
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
