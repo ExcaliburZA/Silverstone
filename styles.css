@@ -99,11 +99,19 @@ button:hover {
 
 .banner h1 {
   position: relative;
-  color: white;
   font-size: 4rem;
   font-weight: bold;
   letter-spacing: 2px;
-  z-index: 1;
+  z-index: 1;/* light gray with some transparency */
+  border-radius: 18px;                /* rounded corners */
+  padding: 0.5em 1.5em;               /* space around the text */
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12); /* subtle shadow for depth */
+  display: inline-block; 
+}
+
+h1 {
+  color: black;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7); /* subtle shadow for readability */
 }
 
 #txtOreDisplay {
@@ -117,4 +125,18 @@ button:hover {
   margin-top: 18px;                   /* space above */
   box-shadow: 0 2px 12px rgba(0,255,204,0.15); /* subtle glow */
   transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+#txtBannerTitle {
+  position: relative;
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  z-index: 1;
+  background: rgba(77, 86, 91, 1); 
+  border-radius: 18px;                /* rounded corners */
+  padding: 0.5em 1.2em;               /* space around the text */
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12); /* subtle shadow for depth */
+  display: inline-block;  
 }

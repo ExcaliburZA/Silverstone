@@ -1,5 +1,21 @@
+localStorage.setItem('nodeRespawned', 'true');
+
 document.getElementById('btnMine').onclick = function() {
     const nodeImage = document.getElementById('imgNode');
+
+    if (localStorage.getItem('nodeRespawned') != 'true')  { 
+        let txtOreDisplay = document.getElementById('txtOreDisplay');
+        txtOreDisplay.textContent = "Node is respawning....";
+        nodeImage.src = "https://images.unsplash.com/vector-1752609379935-1e3a71d8dc78?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";        
+        
+        if (localStorage.getItem('last_mined_tier') != null) {
+            nodeImage.classList.remove(localStorage.getItem('glowClassName'));
+        }
+
+        return;
+    }
+
+    localStorage.setItem('nodeRespawned', 'false');
 
     if (localStorage.getItem('last_mined_tier') != null) {
         nodeImage.classList.remove(localStorage.getItem('glowClassName'));
@@ -91,7 +107,11 @@ document.getElementById('btnMine').onclick = function() {
     document.getElementById('txtOreDisplay').textContent =
         `You mined: ${minedItemName.charAt(0).toUpperCase() + minedItemName.slice(1)} (Total mines: ${mineCount})`;
 
-    document.getElementById('imgNode').src = `images/items/${minedItemName}.png?`;       
+    document.getElementById('imgNode').src = `images/items/${minedItemName}.png?`;  
+    
+    setTimeout(() => {
+        localStorage.setItem('nodeRespawned', 'true');
+    }, 4000);
 };
 
 // --- Function to download localStorage as a .json file ---
