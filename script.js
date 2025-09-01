@@ -1,16 +1,25 @@
 document.getElementById('btnMine').onclick = function() {
+    const nodeImage = document.getElementById('imgNode');
+
+    if (localStorage.getItem('last_mined_tier') != null) {
+        nodeImage.classList.remove(localStorage.getItem('glowClassName'));
+    }
+
     const rarity = Math.floor(Math.random() * 1001);
     let minedItemName = "";
 
+    let tier = 0;
     switch (true) {
         // Case 1: 0.05% chance
         case rarity === 0:
             minedItemName = "rainbow_diamond";
+            tier = 3;
             break;
 
         // Case 2: 1% chance
         case rarity >= 1 && rarity <= 10: {
             const subIndex = (rarity - 1) % 3; // 0,1,2 → equal split
+            tier = 2;
             switch (subIndex) {
                 case 0:
                     minedItemName = "runestone";
@@ -28,6 +37,7 @@ document.getElementById('btnMine').onclick = function() {
         // Case 3: 10% chance
         case rarity >= 11 && rarity <= 110: {
             const subIndex = (rarity - 11) % 5; // 0–4 → equal split
+            tier = 1;
             switch (subIndex) {
                 case 0:
                     minedItemName = "sapphire";
@@ -69,6 +79,11 @@ document.getElementById('btnMine').onclick = function() {
         }
     }
 
+
+    localStorage.setItem('glowClassName', 'glow-' + tier);
+    nodeImage.classList.add(localStorage.getItem('glowClassName'));
+    localStorage.setItem('last_mined_tier', tier);
+
     let mineCount = Number(localStorage.getItem(minedItemName + '_mined')) || 0;
     mineCount += 1;
     localStorage.setItem(minedItemName + '_mined', mineCount);
@@ -80,21 +95,21 @@ document.getElementById('btnMine').onclick = function() {
 };
 
 // --- Function to download localStorage as a .json file ---
-function downloadLocalStorageAsJSON() {
-    const data = {};
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        data[key] = localStorage.getItem(key);
-    }
-    const jsonStr = JSON.stringify(data, null, 2);
-    const blob = new Blob([jsonStr], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
+// function downloadLocalStorageAsJSON() {
+//     const data = {};
+//     for (let i = 0; i < localStorage.length; i++) {
+//         const key = localStorage.key(i);
+//         data[key] = localStorage.getItem(key);
+//     }
+//     const jsonStr = JSON.stringify(data, null, 2);
+//     const blob = new Blob([jsonStr], { type: "application/json" });
+//     const url = URL.createObjectURL(blob);
 
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'localStorageData.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = 'localStorageData.json';
+//     document.body.appendChild(a);
+//     a.click();
+//     document.body.removeChild(a);
+//     URL.revokeObjectURL(url);
+// }

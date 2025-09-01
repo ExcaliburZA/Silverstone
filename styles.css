@@ -41,6 +41,26 @@ body::before {
   object-fit: contain; /* stretch/crop image to fill box */
 }
 
+.glow-0 {
+  box-shadow: 0 0 20px 5px whitesmoke; 
+  transition: box-shadow 0.3s;
+}
+
+.glow-1 {
+  box-shadow: 0 0 20px 5px blue; 
+  transition: box-shadow 0.3s;
+}
+
+.glow-2 {
+  box-shadow: 0 0 20px 5px rgb(155, 5, 175); 
+  transition: box-shadow 0.3s;
+}
+
+.glow-3 {
+  box-shadow: 0 0 20px 5px gold; 
+  transition: box-shadow 0.3s;
+}
+
 /* Button styling */
 button {
   margin-top: 15px;
